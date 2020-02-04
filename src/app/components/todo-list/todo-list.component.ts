@@ -11,10 +11,12 @@ export class TodoListComponent implements OnInit {
   todoTitle: string;
   todoId: number;
   id: number;
+  beforeEditCache: string;
 
   constructor() { }
 
   ngOnInit() {
+    this.beforeEditCache = '';
     this.todoId = 4;
     this.todoTitle = '';
     this.todos = [
@@ -57,11 +59,23 @@ deleteTodo(id: number): void {
 }
 
 editingTodo(todo: Todo): void {
-  todo.editing = true
+  this.beforeEditCache = todo.title;
+  todo.editing = true;
 }
 
 doneEdit(todo: Todo): void {
+  if(todo.title.trim().length === 0) {
+    todo.title = this.beforeEditCache;
+  }
   todo.editing = false
+}
+
+cancelEdit(todo: Todo): void {
+  todo.title = this.beforeEditCache;
+  todo.editing = false;
+}
+completedTodo(todo: Todo): void {
+  todo.completed = true;
 }
 }
 

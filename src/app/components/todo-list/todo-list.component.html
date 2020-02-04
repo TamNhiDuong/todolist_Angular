@@ -6,11 +6,16 @@
 
 <div class="todo-item" *ngFor="let todo of todos">
   <div class="todo-item-left">
-    <input type="checkbox">
-    <div *ngIf="!todo.editing; else showInput" class="todo-item-label" (dblclick)="editingTodo(todo)">
+    <input type="checkbox" [(ngModel)]="todo.completed">
+    <button class='back' (click)="cancelEdit(todo)">Cancel Edit</button>
+    <div 
+    *ngIf="!todo.editing; else showEditBox" 
+    class="todo-item-label" 
+    (dblclick)="editingTodo(todo)"
+    [ngClass]="{ 'completed' : todo.completed }">
       {{ todo.title }}
     </div>
-    <ng-template #showInput>
+    <ng-template #showEditBox>
       <input 
       type="text" 
       class="todo-item-edit" 
