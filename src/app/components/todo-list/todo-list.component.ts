@@ -59,5 +59,9 @@ deleteTodo(id: number): void {
 editingTodo(todo: Todo): void {
   todo.editing = true
 }
+
+doneEdit(todo: Todo): void {
+  todo.editing = false
+}
 }
 
