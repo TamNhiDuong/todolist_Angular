@@ -74,8 +74,14 @@ cancelEdit(todo: Todo): void {
   todo.title = this.beforeEditCache;
   todo.editing = false;
 }
+
 completedTodo(todo: Todo): void {
   todo.completed = true;
 }
+
+itemLeftCounter(): number {
+  return this.todos.filter(todo => !todo.completed).length;
+}
+
 }
 
