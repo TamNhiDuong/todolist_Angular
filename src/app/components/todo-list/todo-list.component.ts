@@ -83,5 +83,9 @@ itemLeftCounter(): number {
   return this.todos.filter(todo => !todo.completed).length;
 }
 
+checkAll(): void {
+  this.todos.forEach(todo => todo.completed = (<HTMLInputElement>event.target).checked)
+}
+
 }
 
