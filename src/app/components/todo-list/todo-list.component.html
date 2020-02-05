@@ -4,7 +4,7 @@
 <input type="text" class="todo-input" placeholder="What needs to be done" [(ngModel)]='todoTitle'
   (keyup.enter)="addTodo()">
 
-<div class="todo-item" *ngFor="let todo of filteredItems()">
+<div class="todo-item" *ngFor="let todo of filteredItems()" @fade>
   <div class="todo-item-left">
     <input type="checkbox" [(ngModel)]="todo.completed">
     <button class='back' (click)="cancelEdit(todo)">Cancel Edit</button>
