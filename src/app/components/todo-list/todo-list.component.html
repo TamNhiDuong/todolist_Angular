@@ -4,7 +4,13 @@
 <input type="text" class="todo-input" placeholder="What needs to be done" [(ngModel)]='todoTitle'
   (keyup.enter)="addTodo()">
 
-<todo-item *ngFor="let todo of filteredItems()" @fade [todo]="todo">
+<todo-item 
+*ngFor="let todo of filteredItems()" 
+[todo]="todo"
+(checkedItem)="doneEdit($event)"
+(editingItem)="editingTodo($event)"
+(cancelEditItem)="cancelEdit($event)"
+(deletedItem)="deleteTodo($event)">
 </todo-item>
 
 <div class="extra-container">
