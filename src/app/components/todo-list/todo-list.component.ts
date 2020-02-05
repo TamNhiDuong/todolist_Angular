@@ -12,6 +12,7 @@ export class TodoListComponent implements OnInit {
   todoId: number;
   id: number;
   beforeEditCache: string;
+  filter: string;
 
   constructor() { }
 
@@ -19,6 +20,7 @@ export class TodoListComponent implements OnInit {
     this.beforeEditCache = '';
     this.todoId = 4;
     this.todoTitle = '';
+    this.filter = '';
     this.todos = [
       {
         'id': 1,
@@ -85,6 +87,23 @@ itemLeftCounter(): number {
 
 checkAll(): void {
   this.todos.forEach(todo => todo.completed = (<HTMLInputElement>event.target).checked)
+}
+
+clearCompleted(): void {
+  this.todos = this.todos.filter(todo => !todo.completed);
+}
+
+filteredItems(): Todo[] {
+  if(this.filter === 'all') {
+    return this.todos;
+  }
+  else if (this.filter === 'active') {
+    return this.todos.filter(todo => !todo.completed);
+  }
+  else if (this.filter === 'completed') {
+    return this.todos.filter(todo => todo.completed);
+  }
+  return this.todos;
 }
 
 }
