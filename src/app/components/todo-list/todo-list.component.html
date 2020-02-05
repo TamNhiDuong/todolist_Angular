@@ -5,29 +5,27 @@
   (keyup.enter)="addTodo()">
 
 <todo-item 
-*ngFor="let todo of filteredItems()" 
-[todo]="todo"
-(checkedItem)="doneEdit($event)"
-(editingItem)="editingTodo($event)"
-(cancelEditItem)="cancelEdit($event)"
-(deletedItem)="deleteTodo($event)">
+  *ngFor="let todo of todoService.filteredItems()" 
+  [todo]="todo" (checkedItem)="doneEdit($event)" >
 </todo-item>
 
 <div class="extra-container">
-  <div><label><input type="checkbox" (change)="checkAll()"> Check All</label>
+  <div><label><input type="checkbox" (change)="todoService.checkAll()"> Check All</label>
   </div>
-  <div>{{ itemLeftCounter() }} items left</div>
+  <div>{{ todoService.itemLeftCounter() }} items left</div>
 </div>
 
 <div class="extra-container">
   <div>
-    <button [ngClass]="{ 'active' : filter === 'all'}" (click)="filter = 'all' ">All</button>
-    <button [ngClass]="{ 'active' : filter === 'active'}" (click)="filter = 'active' ">Active</button>
-    <button [ngClass]="{ 'active' : filter === 'completed'}" (click)="filter = 'completed' ">Completed</button>
+    <button [ngClass]="{ 'active' : todoService.filter === 'all'}" (click)="todoService.filter = 'all' ">All</button>
+    <button [ngClass]="{ 'active' : todoService.filter === 'active'}"
+      (click)="todoService.filter = 'active' ">Active</button>
+    <button [ngClass]="{ 'active' : todoService.filter === 'completed'}"
+      (click)="todoService.filter = 'completed' ">Completed</button>
   </div>
 
   <div>
-    <button (click)="clearCompleted()">Clear Completed</button>
+    <button (click)="todoService.clearCompleted()">Clear Completed</button>
   </div>
 
 </div>
