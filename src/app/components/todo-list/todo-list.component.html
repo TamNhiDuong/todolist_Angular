@@ -4,23 +4,8 @@
 <input type="text" class="todo-input" placeholder="What needs to be done" [(ngModel)]='todoTitle'
   (keyup.enter)="addTodo()">
 
-<div class="todo-item" *ngFor="let todo of filteredItems()" @fade>
-  <div class="todo-item-left">
-    <input type="checkbox" [(ngModel)]="todo.completed">
-    <button class='back' (click)="cancelEdit(todo)">Cancel Edit</button>
-    <div *ngIf="!todo.editing; else showEditBox" class="todo-item-label" (dblclick)="editingTodo(todo)"
-      [ngClass]="{ 'completed' : todo.completed }">
-      {{ todo.title }}
-    </div>
-    <ng-template #showEditBox>
-      <input type="text" class="todo-item-edit" [(ngModel)]="todo.title" autofocus (blur)="doneEdit(todo)"
-        (keyup.enter)="doneEdit(todo)">
-    </ng-template>
-  </div>
-  <div class="remove-item" (click)="deleteTodo(todo.id)">
-    &times;
-  </div>
-</div>
+<todo-item *ngFor="let todo of filteredItems()" @fade [todo]="todo">
+</todo-item>
 
 <div class="extra-container">
   <div><label><input type="checkbox" (change)="checkAll()"> Check All</label>
